@@ -1,5 +1,7 @@
 {
   "name": "deviceManagerApp",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }

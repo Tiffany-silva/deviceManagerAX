@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/login"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>signup</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-grid style="height: 100%">
+  <ion-row class="ion-justify-content-center ion-align-items-center" style="height: 100%;flex-direction: column">
+    <h3 class="align-content-center" style="padding-bottom:40px;"> SIGNUP </h3>
+    <form [formGroup]="signupForm">
+      <!-- <ion-item>
+        <ion-input formControlName="firstName" type="text" placeholder="Enter your firstname" ngModel required>
+        </ion-input>
+      </ion-item>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validation_messages.firstname">
+          <div class="error-message" *ngIf="signupForm.get('firstname').hasError(validation.type) 
+              && (signupForm.get('firstname').dirty || signupForm.get('firstname').touched)">
+            {{validation.message}}
+          </div>
+        </ng-container>
+      </div>
+      <ion-item>
+        <ion-input formControlName="lastname" type="text" placeholder="Enter your Lastname" ngModel required>
+        </ion-input>
+      </ion-item>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validation_messages.lastname">
+          <div class="error-message" *ngIf="signupForm.get('lastname').hasError(validation.type) 
+            && (signupForm.get('lastname').dirty || signupForm.get('lastname').touched)">
+            {{validation.message}}
+          </div>
+        </ng-container>
+      </div> -->
+      <ion-item>
+        <ion-input formControlName="email" type="email" placeholder="Enter your Email"
+         [class.invalid]="!signupForm.controls['email'].valid && signupForm.controls['email'].touched"  
+         ngModel required>
+        </ion-input>
+      </ion-item>
+      <div class="validation-errors" *ngIf="!signupForm.controls['email'].valid
+      && signupForm.controls['email'].touched">
+          Please enter a valid email address
+      </div>
+      <ion-item>
+        <ion-input formControlName="password" type="password" placeholder="Enter your Password" [class.invalid]="!signupForm.controls['password'].valid && signupForm.controls['password'].touched" ngModel required>
+        </ion-input>
+      </ion-item>
+      <div class="validation-errors"
+      *ngIf="!signupForm.controls['password'].valid  &&
+      signupForm.controls['password'].touched">
+        password should contain more than 6 characters
+      </div>
+      <ion-item>
+        <ion-input formControlName="confirmPassword" type="Password" placeholder="Confirm your password" ngModel 
+          required></ion-input>
+      </ion-item>
+      <div class="validation-errors"
+      *ngIf="signupForm.hasError('passwordsNotEqual')" >
+        passwords dont match
+      </div>
+      <ion-button size="small" (click)="registerUser(signupForm)" >SIGNUP</ion-button>
+    </form>
+    <div class="padding">
+      <ion-label routerLink="/signup">Have an account? Login instead</ion-label>
+    </div>
+  </ion-row>
+</ion-grid>
+</ion-content>
