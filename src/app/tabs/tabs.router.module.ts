@@ -16,27 +16,7 @@ const routes: Routes = [
               import('../pages/login/login.module').then(m => m.LoginPageModule)
           }
         ]
-       },
-      // {
-      //   path: 'qr-scanner',
-      //   children: [
-      //     {
-      //       path: '',
-      //       loadChildren: () =>
-      //         import('').then(m => m.Tab2PageModule)
-      //     }
-      //   ]
-      // },
-      // {
-      //   path: 'profile',
-      //   children: [
-      //     {
-      //       path: '',
-      //       loadChildren: () =>
-      //         import('').then(m => m.Tab3PageModule)
-      //     }
-      //   ]
-       //}
+       }
        ,
       {
         path: '',
