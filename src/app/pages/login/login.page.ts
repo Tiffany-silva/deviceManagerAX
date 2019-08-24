@@ -15,7 +15,7 @@ export class LoginPage implements OnInit {
   loginForm: FormGroup;
   errorMessage: string = '';
   public loading: HTMLIonLoadingElement;
-=
+
     constructor(
       public loadingCtrl: LoadingController,
       public alertCtrl: AlertController,
