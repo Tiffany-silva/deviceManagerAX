@@ -4,6 +4,7 @@ import 'firebase/auth';
 import 'firebase/firestore';
 
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -16,8 +17,8 @@ export class AuthenticationService {
     .createUserWithEmailAndPassword(email, password)
       .then((newUserCredential: firebase.auth.UserCredential)=>{
         firebase
-        .firestore()
-        .doc(`/userProfile/${newUserCredential.user.uid}`)
+        .firestore().collection('userProfile')
+        .doc(newUserCredential.user.uid)
         .set({email});
       })
       .catch(error =>{
@@ -25,6 +26,7 @@ export class AuthenticationService {
         throw new Error(error);
       });
   }
+
 
   loginUser(
     email:string, 

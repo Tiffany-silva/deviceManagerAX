@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{currentDevice?.name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <ion-card-content>
+      <p>SerialNumber: <strong>${{currentDevice?.serialNum}}</strong></p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -1,9 +1,9 @@
-import { AuthenticationService } from 'src/app/services/authentication.service';
+import { AuthenticationService } from 'src/app/services/user/authentication.service';
 import { Router } from '@angular/router';
 
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import{AlertController, LoadingController} from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-reset-password',
@@ -13,11 +13,11 @@ import{AlertController, LoadingController} from '@ionic/angular';
 
 export class ResetPasswordPage implements OnInit {
   resetPasswordform: FormGroup;
- 
+
   loading: HTMLIonLoadingElement;
 
   constructor(
-   // public loadingCtrl: LoadingController,
+    // public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
     //private navCtrl: NavController,
     private authService: AuthenticationService,
@@ -29,14 +29,14 @@ export class ResetPasswordPage implements OnInit {
         '',
         Validators.compose([
           Validators.required,
-        Validators.email        
-      ]),
-    ],
+          Validators.email
+        ]),
+      ],
     });
   }
 
   ngOnInit() {
-    
+
   }
   resetPassword(resetPasswordForm: FormGroup): void {
     if (!resetPasswordForm.valid) {
