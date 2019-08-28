@@ -1,24 +1,27 @@
-<ion-header>
+<ion-header translucent>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-    <ion-title>device list</ion-title>
-  </ion-toolbar>
+    <ion-searchbar></ion-searchbar>
+  <ion-buttons slot="end">
+    <ion-button slot="primary" (click)="scan()">
+      <ion-icon slot="icon-only" name="qr-scanner"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content fullscreen>
   <ion-list>
-    <ion-list-header> <ion-label>Your next events</ion-label> </ion-list-header>
+    <ion-list-header > <ion-label class=".ion-text-center">Device List</ion-label> </ion-list-header>
     <ion-item
       tappable
       *ngFor="let device of deviceList"
-      routerLink="/device-detail/{{ device.id }}"
-    >
+      routerLink="/device-detail/{{ device.deviceName }}" >
       <ion-label>
-        <h2>{{device?.name}}</h2>
-        <p>Ticket: <strong>${{device?.serialNum}}</strong></p>
+        <h2>{{device?.deviceName}}</h2>
+        <p> <strong>{{device?.serialNumber}}</strong></p>
       </ion-label>
     </ion-item>
   </ion-list>
 </ion-content>
+
+<!-- " -->

@@ -1,3 +1,6 @@
+import { AngularFirestore } from '@angular/fire/firestore';
+import { User } from './../../interfaces/user';
+import { UserService } from './../../services/user/user.service';
 import { NavController, AlertController, LoadingController } from '@ionic/angular';
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -8,6 +11,7 @@ import { AuthenticationService } from '../../services/user/authentication.servic
   selector: 'app-signup',
   templateUrl: './signup.page.html',
   styleUrls: ['./signup.page.scss'],
+  providers:[AngularFirestore]
 })
 
 export class SignupPage implements OnInit {
@@ -22,16 +26,16 @@ export class SignupPage implements OnInit {
     private loadingCtrl: LoadingController,
     private alertCtrl: AlertController,
     private formBuilder: FormBuilder,
-    private router: Router
-
+    private router: Router,
+    private userService: UserService
   ) {
     this.signupForm = this.formBuilder.group({
-      // firstname: [
-      //   '', Validators.compose([Validators.required]),
-      // ],
-      // lastname: [
-      //   '', Validators.compose([Validators.required]),
-      // ],
+      firstName: [
+        '', Validators.compose([Validators.required]),
+      ],
+      lastName: [
+        '', Validators.compose([Validators.required]),
+      ],
       email: [
         '', Validators.compose([Validators.required, Validators.email]),
       ],
@@ -54,14 +58,32 @@ export class SignupPage implements OnInit {
       console.log('Need to complete the form, current value: ', signupForm.value);
     } else {
       const email: string = signupForm.value.email;
-      // const firstname: string=signupForm.value.firstname;
-      // const lastname: string= signupForm.value.lastname;
+      const firstName: string=signupForm.value.firstName;
+      const lastName: string= signupForm.value.lastName;
       const password: string = signupForm.value.password;
 
       this.authService.signup(email, password).then(
-        () => {
-          this.loading.dismiss().then(() => {
-            this.router.navigateByUrl('home');
+        (data) => {
+          console.log(data);
+          const user : User={
+            'userid': data.user.uid,
+            'firstName': firstName,
+            'lastName': lastName,
+            'email':email,
+            'createdDate': new Date(),
+            'role': 'borrower',
+            'status': 'disabled'
+          }
+          this.userService.addUser(user).then(userCreate=>{
+            console.log(user);
+          })
+          this.loading.dismiss().then(async() => {
+            const alert= await this.alertCtrl.create({
+              message: 'Registration Successful!',
+              buttons: [{text: 'OK', role: 'cancel'}],
+            });
+            await alert.present();
+            this.router.navigateByUrl('tabs');
           });
         },
         error => {

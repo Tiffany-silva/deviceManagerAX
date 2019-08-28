@@ -9,20 +9,50 @@ import { ActivatedRoute } from '@angular/router';
 export class DeviceDetailPage implements OnInit {
 
   public currentDevice: any = {};
-
+  public deviceList=[
+    {
+      deviceName: "iPhone",
+      serialNumber: "12345"
+    },
+    {
+      deviceName: "iPhone",
+      serialNumber: "12345"
+    },
+    {
+      deviceName: "iPhone",
+      serialNumber: "12345"
+    },
+    {
+      deviceName: "iPhone",
+      serialNumber: "12345"
+    }
+  ];
   constructor(
     private deviceService: DeviceService,
     private route: ActivatedRoute,) { }
 
   ngOnInit() {
-    const deviceID: string = this.route.snapshot.paramMap.get('id');
-    this.deviceService
-      .getDeviceDetail(deviceID)
-      .get()
-      .then(deviceSnapshot => {
-        this.currentDevice = deviceSnapshot.data();
-        this.currentDevice.id = deviceSnapshot.id;
-      });
+    const name: string = this.route.snapshot.paramMap.get('deviceName');
+    this.getDevice(name);
+    // this.deviceService
+    //   .getDeviceDetail(deviceID)
+    //   .get()
+    //   .then(deviceSnapshot => {
+    //     this.currentDevice = deviceSnapshot.data();
+    //     this.currentDevice.id = deviceSnapshot.id;
+    //   });
+
+
+  }
+
+  getDevice(name:string){
+    this.deviceList.forEach(element => {
+      if(element.deviceName===name){
+        this.currentDevice=element;
+      }else{
+        console.log("no such device");
+      }
+    });
   }
 
   
