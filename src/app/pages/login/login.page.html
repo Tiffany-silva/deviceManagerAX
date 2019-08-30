@@ -42,47 +42,4 @@
             </ion-grid>
       </div>
     </div>
-  </ion-content>
-<!-- <ion-content force-overscroll="false">
-
-    <gl-background-video src="assets/backgroundVid/backgroundVideo.mp4" poster="assets/backgroundVid/sample.png"></gl-background-video>
-    
-  <ion-grid>
-    <ion-row class="ion-justify-content-center ion-align-items-center" style="height: 100%;flex-direction: column">
-      <h3 class="align-content-center" style="padding-bottom:40px;"> LOGIN </h3>
-      <form class="form" [formGroup]="loginForm">
-      <ion-item>
-          <ion-input formControlName="email" type="email" placeholder="Email" ngModel required></ion-input>
-        </ion-item>
-        <div class="validation-errors">
-          <ng-container *ngFor="let validation of validation_messages.email">
-            <div class="error-message" *ngIf="loginForm.get('email').hasError(validation.type) 
-                && (loginForm.get('email').dirty || loginForm.get('email').touched)">
-              {{validation.message}}
-            </div>
-          </ng-container>
-        </div>
-        <ion-item>
-          <ion-input formControlName="password" type="password" class="form-control" placeholder="Password"
-            ngModel required></ion-input>
-        </ion-item>
-        <div class="validation-errors">
-          <ng-container *ngFor="let validation of validation_messages.password">
-            <div class="error-message" *ngIf="loginForm.get('password').hasError(validation.type)
-                    && (loginForm.get('password').dirty || loginForm.get('password').touched)">
-              {{validation.message}}
-            </div>
-          </ng-container>
-        </div>
-        <ion-button  (click)="loginUser(loginForm)" expand="block" [disabled]="!loginForm.valid">login</ion-button>
-      </form>
-        <label class="error-message"> {{errorMessage}} </label>
-        <ion-label routerLink="/reset-password" class="forgotpw">Forgot password?</ion-label>
-        <div style="padding:10px;">
-          <ion-label routerLink="/signup" class="noaccount">No account? Sign Up instead</ion-label>
-        </div>
-      
-    </ion-row>
-  </ion-grid>
-
-</ion-content> -->
+</ion-content>

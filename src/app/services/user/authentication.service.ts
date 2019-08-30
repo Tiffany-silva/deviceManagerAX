@@ -1,50 +1,32 @@
-import { Injectable } from '@angular/core';
-import * as firebase from 'firebase/app';
-import 'firebase/auth';
-import 'firebase/firestore';
-
-
+import { Injectable } from "@angular/core";
+import { AngularFireAuth } from "@angular/fire/auth";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class AuthenticationService {
+  constructor(private afu: AngularFireAuth) {}
 
-  constructor() { }
-
-  signup(email: string, password:string): Promise<any> {
-    return firebase.auth()
-    .createUserWithEmailAndPassword(email, password)
-      .then((newUserCredential: firebase.auth.UserCredential)=>{
-        firebase
-        .firestore().collection('userProfile')
-        .doc(newUserCredential.user.uid)
-        .set({email});
-      })
-      .catch(error =>{
-        console.error(error);
-        throw new Error(error);
-      });
+  signup(email: string, password: string): Promise<any> {
+    return this.afu.auth.createUserWithEmailAndPassword(email, password);
   }
-
 
   loginUser(
-    email:string, 
-    password:string
-    ): Promise<firebase.auth.UserCredential> {
-    return firebase.auth().signInWithEmailAndPassword(email,password);
+    email: string,
+    password: string
+  ): Promise<firebase.auth.UserCredential> {
+    return this.afu.auth.signInWithEmailAndPassword(email, password);
   }
 
-  logoutUser():Promise <void>{
-    return firebase.auth().signOut();
+  logoutUser(): Promise<void> {
+    return this.afu.auth.signOut();
   }
 
-  resetPassword(email:string):Promise <void>{
-    return firebase.auth().sendPasswordResetEmail(email);
+  resetPassword(email: string): Promise<void> {
+    return this.afu.auth.sendPasswordResetEmail(email);
   }
 
-  userDetails(){
-    return firebase.auth().currentUser;
+  getUserDetails() {
+    return this.afu.auth.currentUser.uid;
   }
-
 }

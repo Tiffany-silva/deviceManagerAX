@@ -1,3 +1,4 @@
+import { UserService } from 'src/app/services/user/user.service';
 import { AuthenticationService } from 'src/app/services/user/authentication.service';
 
 import { Component, OnInit } from '@angular/core';
@@ -12,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class LoginPage implements OnInit {
 
-  loginForm: FormGroup;
+   loginForm: FormGroup;
   errorMessage: string = '';
   public loading: HTMLIonLoadingElement;
 
@@ -20,6 +21,7 @@ export class LoginPage implements OnInit {
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
     private authService: AuthenticationService,
+    private users:UserService,
     private router: Router,
     private formBuilder: FormBuilder
   ) {
@@ -34,18 +36,7 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit() {
-
-    this.loginForm = this.formBuilder.group({
-      email: new FormControl('', Validators.compose([
-        Validators.required,
-        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
-      ])),
-      password: new FormControl('', Validators.compose([
-        Validators.minLength(5),
-        Validators.required
-      ])),
-    });
-
+    
   }
 
   validation_messages = {
@@ -71,7 +62,7 @@ export class LoginPage implements OnInit {
 
       this.authService.loginUser(email, password).then(
         () => {
-          this.loading.dismiss().then(() => {
+          this.loading.dismiss().then(async () => {
             this.router.navigateByUrl('tabs');
           });
         },

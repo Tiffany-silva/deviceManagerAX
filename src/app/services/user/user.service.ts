@@ -10,14 +10,14 @@ import { User } from 'src/app/interfaces/user';
 export class UserService {
     private userCollection: AngularFirestoreCollection<User>;
     users: Observable<User[]>;
-
+    userList: User[] = [];
     constructor(private afs: AngularFirestore) {
         this.userCollection = afs.collection<User>('Users');
         this.users = this.userCollection.valueChanges();
     }
     addUser(newUser: User): Promise<DocumentReference> {
         return this.userCollection.add(newUser);
-    }
+    } 
 
     getUsers(): Observable<any> {
         return this.afs.collection('/Users').snapshotChanges().pipe(
@@ -27,6 +27,29 @@ export class UserService {
             return { id, ...data };
           })));
     
+    }
+
+    getUserById(id: string): Observable<User[]> {
+      const userDocuments = this.afs.collection<User[]>('Users');
+      return userDocuments.snapshotChanges()
+        .pipe(
+          map(changes => changes.map(({ payload: { doc } }) => {
+            const data = doc.data();
+            const id = doc.id
+            return { id, ...data };
+          })),
+          map((users) => users.find(doc => doc.id === id)));
+    }
+    
+    async getUserName(id:string):Promise<any>{
+      await this.getUsers().subscribe(userData => {
+        this.userList = userData;
+      });
+      this.userList.forEach(user=>{
+        if(user.userid===id){
+          return user.firstName + " " + user.lastName; 
+        }
+      })
     }
 }
 

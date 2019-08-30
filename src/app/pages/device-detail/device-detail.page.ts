@@ -32,8 +32,8 @@ export class DeviceDetailPage implements OnInit {
     private route: ActivatedRoute,) { }
 
   ngOnInit() {
-    const name: string = this.route.snapshot.paramMap.get('deviceName');
-    this.getDevice(name);
+    const id: string = this.route.snapshot.paramMap.get('id');
+    this.getDevice(id);
     // this.deviceService
     //   .getDeviceDetail(deviceID)
     //   .get()

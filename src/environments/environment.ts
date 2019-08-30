@@ -5,13 +5,13 @@
 export const environment = {
   production: false,
   firebaseConfig: {
-    apiKey: "AIzaSyAJ9RcX1-2B4eYP5fUtfzKvqrfJJcPM8VY",
-    authDomain: "device-manager-16e67.firebaseapp.com",
-    databaseURL: "https://device-manager-16e67.firebaseio.com",
-    projectId: "device-manager-16e67",
-    storageBucket: "device-manager-16e67.appspot.com",
-    messagingSenderId: "179904420287",
-    appId: "1:179904420287:web:fd88b5881e5b3248"
+    apiKey: "AIzaSyCfhxxsxfUfviRj8CzDAfaBgWQBNREd0eg",
+    authDomain: "device-manager-app.firebaseapp.com",
+    databaseURL: "https://device-manager-app.firebaseio.com",
+    projectId: "device-manager-app",
+    storageBucket: "device-manager-app.appspot.com",
+    messagingSenderId: "840780811478",
+    appId: "1:840780811478:web:bcbbeab78ad6f29a"
 }
 };
 

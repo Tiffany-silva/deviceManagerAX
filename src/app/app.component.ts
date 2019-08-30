@@ -23,8 +23,8 @@ export class AppComponent {
         console.error(error);
       });
 
-      StatusBar.hide().catch(error=>{
-        console.error(error);
-      });
+      // StatusBar.hide().catch(error=>{
+      //   console.error(error);
+      // });
   }
 }

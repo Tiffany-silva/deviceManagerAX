@@ -19,14 +19,14 @@ const routes: Routes = [
                             import("src/app/pages/device-list/device-list.module").then(m => m.DeviceListPageModule), canActivate: [AuthGuard],
             },
             {
-                path: "scanner",
-                loadChildren: ()=>
-                import('../scanner/scanner.module').then(m=>m.ScannerPageModule), canActivate:[AuthGuard],
+                path: "profile/:id", loadChildren: ()=>
+                import('../profile/profile.module').then(m=>m.ProfilePageModule),canActivate: [AuthGuard],
             },
-            // {
-            //     path: "profile", loadChildren: ()=>
-            //     import('../profile/profile.module').then(m=>m.ProfilePageModule),canActivate: [AuthGuard],
-            // }
+            {
+                path: "userList",
+                loadChildren: ()=>
+                import('../user-list/user-list.module').then(m=>m.UserListPageModule), canActivate: [AuthGuard],
+            }
            
         ]
     },

@@ -7,31 +7,29 @@ import {
   UrlTree
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import * as firebase from 'firebase/app';
-import 'firebase/auth';
 import { resolve } from 'url';
 import { reject } from 'q';
+import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
 
+export class UserToken {}
+export class Permissions {
+  canActivate(user: UserToken, id: string): boolean {
+    return true;
+  }
+}
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  constructor(private router: Router) { }
+  constructor(private permissions: Permissions, private currentUser: UserToken) { }
 
+  
   canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot):
-    boolean | Observable<boolean> | Promise<boolean> {
-    return new Promise((resolve, reject) => {
-      firebase.auth().onAuthStateChanged((user: firebase.User) => {
-        if (user) {
-          resolve(true);
-        } else {
-          console.log('User is not logged in');
-          this.router.navigate(['/login']);
-          resolve(false);
-        }
-      })
-    });
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<boolean|UrlTree>|Promise<boolean|UrlTree>|boolean|UrlTree {
+    return this.permissions.canActivate(this.currentUser, route.params.id);
   }
-}
+}  
+  
+

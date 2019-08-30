@@ -1,6 +1,10 @@
+import { AuthenticationService } from 'src/app/services/user/authentication.service';
+import { Device } from './../../interfaces/device';
 import { Component, OnInit } from '@angular/core';
 import { DeviceService } from 'src/app/services/device/device.service';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { UserService } from 'src/app/services/user/user.service';
+
 @Component({
   selector: 'app-device-list',
   templateUrl: './device-list.page.html',
@@ -8,41 +12,20 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
   providers:[BarcodeScanner]
 })
 export class DeviceListPage implements OnInit {
-  public deviceList=[
-    {
-      deviceName: "iPhone",
-      serialNumber: "12345"
-    },
-    {
-      deviceName: "iPhone1",
-      serialNumber: "12345"
-    },
-    {
-      deviceName: "iPhone2",
-      serialNumber: "12345"
-    },
-    {
-      deviceName: "iPhone3",
-      serialNumber: "12345"
-    }
-  ];
+  
+  deviceList: Device[]=[];
+
   constructor(private deviceService: DeviceService, private barcodeScanner: BarcodeScanner) {}
   
   ngOnInit() {
-    // this.deviceService
-    //   .getDeviceList()
-    //   .get()
-    //   .then(deviceListSnapshot => {
-    //     this.deviceList = [];
-    //     deviceListSnapshot.forEach(snap => {
-    //       this.deviceList.push({
-    //         id: snap.id,
-    //         name: snap.data().name,
-    //         price: snap.data().serialNum,
-    //       });
-    //       return false;
-    //     });
-    //   });
+    this.deviceService.getDeviceList().subscribe(deviceData=>{
+      this.deviceList=deviceData;
+    });
+  }
+  
+
+  getUserName():string{
+    return 'jane';
   }
 
   scan(){

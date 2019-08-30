@@ -83,7 +83,7 @@ export class SignupPage implements OnInit {
               buttons: [{text: 'OK', role: 'cancel'}],
             });
             await alert.present();
-            this.router.navigateByUrl('tabs');
+            this.router.navigateByUrl('login');
           });
         },
         error => {
