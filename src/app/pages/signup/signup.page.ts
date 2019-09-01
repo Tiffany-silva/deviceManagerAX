@@ -61,12 +61,11 @@ export class SignupPage implements OnInit {
       const firstName: string=signupForm.value.firstName;
       const lastName: string= signupForm.value.lastName;
       const password: string = signupForm.value.password;
-
+      let userid:string='';
       this.authService.signup(email, password).then(
         (data) => {
-          console.log(data);
+          userid=data.user.uid;
           const user : User={
-            'userid': data.user.uid,
             'firstName': firstName,
             'lastName': lastName,
             'email':email,
@@ -74,7 +73,7 @@ export class SignupPage implements OnInit {
             'role': 'borrower',
             'status': 'disabled'
           }
-          this.userService.addUser(user).then(userCreate=>{
+          this.userService.addUser(user, userid).then(userCreate=>{
             console.log(user);
           })
           this.loading.dismiss().then(async() => {

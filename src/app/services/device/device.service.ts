@@ -45,7 +45,7 @@ getDeviceList(): Observable<any> {
       })));
 
 }
-  getDeviceDetail(deviceID: string): firebase.firestore.DocumentReference {
+  getDeviceDetail(deviceID: string) {
     return this.deviceListRef.doc(deviceID);
   }
 

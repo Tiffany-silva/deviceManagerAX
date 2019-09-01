@@ -1,5 +1,5 @@
 export interface Device {
-    id:string,
+    
     deviceName: string,
     serialNumber: string;
     purchasedDate:Date,
@@ -11,6 +11,6 @@ export interface Device {
     borrower:string,
     recievedDate:Date,
     expenseBy:string,
-    addedBy:string,
+    addedBy:any,
     deviceStatus:string
 }

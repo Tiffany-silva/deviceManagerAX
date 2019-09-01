@@ -13,9 +13,11 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class DeviceListPage implements OnInit {
   
-  deviceList: Device[]=[];
+  public deviceList: Device[]=[];
 
-  constructor(private deviceService: DeviceService, private barcodeScanner: BarcodeScanner) {}
+  constructor(private deviceService: DeviceService, private barcodeScanner: BarcodeScanner) {
+    
+  }
   
   ngOnInit() {
     this.deviceService.getDeviceList().subscribe(deviceData=>{
@@ -28,6 +30,9 @@ export class DeviceListPage implements OnInit {
     return 'jane';
   }
 
+  // getUserRole(){
+  //   return;
+  // }
   scan(){
     this.barcodeScanner.scan().then(barcodeData => {
       console.log('Barcode data', barcodeData);

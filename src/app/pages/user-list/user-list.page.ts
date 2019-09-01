@@ -3,6 +3,8 @@ import { Component, OnInit } from "@angular/core";
 import { User } from "src/app/interfaces/user";
 import { Observable } from "rxjs";
 import { BarcodeScanner } from "@ionic-native/barcode-scanner/ngx";
+import { AuthenticationService } from 'src/app/services/user/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: "app-user-list",
@@ -15,13 +17,20 @@ export class UserListPage implements OnInit {
 
   constructor(
     private userService: UserService,
-    private barcodeScanner: BarcodeScanner
+    private barcodeScanner: BarcodeScanner,
+    private authService:AuthenticationService,
+    private route:Router
   ) {}
 
   ngOnInit() {
     this.userService.getUsers().subscribe(userData => {
       this.userList = userData;
     });
+  }
+
+  navProfile(id:string){
+   
+    this.route.navigate([`../profile/${this.authService.getUserDetails()}`]);
   }
 
   scan() {

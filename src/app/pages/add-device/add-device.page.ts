@@ -7,6 +7,7 @@ import { DeviceService } from 'src/app/services/device/device.service';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { NavController, LoadingController, AlertController } from '@ionic/angular';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { resolve } from 'url';
 
 @Component({
   selector: 'app-add-device',
@@ -18,7 +19,8 @@ export class AddDevicePage implements OnInit {
   addDeviceForm: FormGroup;
   errorMessage: string = '';
   public loading: HTMLIonLoadingElement;
-  
+  public currentUser:any;
+  public name:string;
   constructor(
     private deviceService: DeviceService,
     public loadingCtrl: LoadingController,
@@ -55,9 +57,6 @@ export class AddDevicePage implements OnInit {
       expenseBy: [
         '', Validators.compose([Validators.required]),
       ],
-      addedBy: [
-        '', Validators.compose([Validators.required]),
-      ],
       status: [
         '', Validators.compose([Validators.required]),
       ],
@@ -84,14 +83,14 @@ export class AddDevicePage implements OnInit {
       const receivedDate: Date=addDeviceForm.value.receivedDate;
       const expenseBy: string=addDeviceForm.value.expenseBy;
       const status: string=addDeviceForm.value.status;
-      //To-do
-      // const addedBy:string= this.userService.getUserById('UpfCBcCWOKCLlcKGm7rl').subscribe(userdata=>{
-      //   console.log(userdata);
-      // });
-      
-
+      let addedBy;
+      this.userService.getUserName(this.authService.getUserDetails()).subscribe(
+       async data =>{
+          if(data){
+            this.currentUser=data.payload.data();
+            
       const device : Device={
-        'id':'',
+
         'deviceName': deviceName,
         'serialNumber':serialNumber,
         'purchasedDate':purchasedDate,
@@ -103,8 +102,9 @@ export class AddDevicePage implements OnInit {
         'borrower': '',
         'recievedDate':receivedDate,
         'expenseBy':expenseBy,
+        'addedBy': this.currentUser.firstName + " " + this.currentUser.lastName,
         'deviceStatus':status,
-        'addedBy': 'pending'
+        
       }
   
       this.deviceService
@@ -132,6 +132,10 @@ export class AddDevicePage implements OnInit {
       );
       this.loading = await this.loadingCtrl.create();
       await this.loading.present();
+          }
+        }
+      );
+
     }
   }
  

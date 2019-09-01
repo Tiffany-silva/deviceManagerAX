@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/user/authentication.service';
 
 @Component({
   selector: 'app-tabs',
@@ -8,8 +9,13 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class TabsPage {
 
-  constructor(private route: ActivatedRoute) {
-   // this.route.navigate(['/heroes', { id: '' }]);
+  constructor(private route:Router, private authService:AuthenticationService) {
+    
+  }
+
+  navProfile(id:string){
+   
+    this.route.navigate([`../profile/${this.authService.getUserDetails()}`]);
   }
 
 }

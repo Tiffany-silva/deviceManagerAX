@@ -42,7 +42,7 @@
       <ion-item-sliding>
         <ion-item routerLink="/device-detail/{{ device.id }}">
           <ion-avatar slot="start">
-            <img src="../../../assets/thumbnail/deviceThumbnal.png">
+            <img src="../../../assets/thumbnail/deviceThumbnail.png">
           </ion-avatar>
           <ion-label>
             <h2>{{device?.deviceName}}</h2>
@@ -53,11 +53,11 @@
           <ion-item-option>
             Borrow
           </ion-item-option>
-          <div *ngIf="getUserRole()=='admin'">
+          <!-- <div *ngIf="getUserRole()=='admin'"> -->
           <ion-item-option>
             Edit
           </ion-item-option>
-          </div>
+          <!-- </div> -->
         </ion-item-options>
       </ion-item-sliding>
     </div>

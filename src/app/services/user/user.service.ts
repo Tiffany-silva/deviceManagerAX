@@ -1,8 +1,11 @@
+import { auth } from 'firebase/app';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { Injectable } from '@angular/core';
-import { AngularFirestoreCollection, AngularFirestore, DocumentReference } from '@angular/fire/firestore';
+import { AngularFirestoreCollection, AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from 'src/app/interfaces/user';
+
 
 @Injectable({
     providedIn: 'root'
@@ -10,17 +13,27 @@ import { User } from 'src/app/interfaces/user';
 export class UserService {
     private userCollection: AngularFirestoreCollection<User>;
     users: Observable<User[]>;
-    userList: User[] = [];
-    constructor(private afs: AngularFirestore) {
-        this.userCollection = afs.collection<User>('Users');
+    public currentUser;
+    public userProfile:AngularFirestoreDocument;
+    constructor(private db: AngularFirestore, private auth:AngularFireAuth) {
+        this.currentUser=auth.auth.currentUser;
+        this.auth.auth.onAuthStateChanged(user=>{
+          if(user){
+            this.currentUser=user;
+            this.userProfile=db.doc(`/Users/${user.uid}`);
+          }
+        })
+        this.userCollection = db.collection<User>('Users');
         this.users = this.userCollection.valueChanges();
     }
-    addUser(newUser: User): Promise<DocumentReference> {
-        return this.userCollection.add(newUser);
+    addUser(newUser: User, userID:string): Promise<any> {
+        return this.userCollection.doc(userID).set(newUser);
     } 
 
+
+
     getUsers(): Observable<any> {
-        return this.afs.collection('/Users').snapshotChanges().pipe(
+        return this.db.collection('/Users').snapshotChanges().pipe(
           map(actions => actions.map(a => {
             const data = a.payload.doc.data() as User;
             const id = a.payload.doc.id;
@@ -29,76 +42,55 @@ export class UserService {
     
     }
 
-    getUserById(id: string): Observable<User[]> {
-      const userDocuments = this.afs.collection<User[]>('Users');
-      return userDocuments.snapshotChanges()
-        .pipe(
-          map(changes => changes.map(({ payload: { doc } }) => {
-            const data = doc.data();
-            const id = doc.id
-            return { id, ...data };
-          })),
-          map((users) => users.find(doc => doc.id === id)));
+    updateName(firstName: string, lastName: string): Promise<any> {
+      return this.userProfile.update({ firstName, lastName });
     }
-    
-    async getUserName(id:string):Promise<any>{
-      await this.getUsers().subscribe(userData => {
-        this.userList = userData;
-      });
-      this.userList.forEach(user=>{
-        if(user.userid===id){
-          return user.firstName + " " + user.lastName; 
-        }
-      })
+
+    getUserD(userID: string){
+      return this.db.collection('Users').doc(userID);
     }
-}
 
-  
+    updateEmail(newEmail: string, password: string): Promise<any> {
+      const credential: firebase.auth.AuthCredential = auth.EmailAuthProvider.credential(
+        this.currentUser.email,
+        password
+      );
+      return this.currentUser
+        .reauthenticateWithCredential(credential)
+        .then(() => {
+          this.currentUser.updateEmail(newEmail).then(() => {
+            this.userProfile.update({ email: newEmail });
+          });
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    }
 
-  // addUser(newUser: User):Promise<DocumentReference> {
-  //   return this.userCollection.add(newUser);
-  // }
+    updatePassword(newPassword: string, oldPassword: string):Promise<any>{
+      const credential: firebase.auth.AuthCredential = auth.EmailAuthProvider.credential(
+        this.currentUser.email,
+        oldPassword
+      );
+      return this.currentUser
+        .reauthenticateWithCredential(credential)
+        .then(() => {
+          this.currentUser.updatePassword(newPassword).then(() => {
+            console.log('Password changed');
+          });
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    }
 
-  // getUserProfile(): firebase.firestore.DocumentReference {
-  //   return this.userProfile;
-  // }
+    getUserName(id:string){
+      return this.db.collection('Users').doc(id).snapshotChanges();
 
-  // updateName(firstName: string, lastName: string): Promise<any> {
-  //   return this.userProfile.update({ firstName, lastName });
-  // }
+    }
 
-  // updateEmail(newEmail: string, password: string): Promise<any> {
-  //   const credential: firebase.auth.AuthCredential = firebase.auth.EmailAuthProvider.credential(
-  //     this.currentUser.email,
-  //     password
-  //   );
-  //   return this.currentUser
-  //     .reauthenticateWithCredential(credential)
-  //     .then(() => {
-  //       this.currentUser.updateEmail(newEmail).then(() => {
-  //         this.userProfile.update({ email: newEmail });
-  //       });
-  //     })
-  //     .catch(error => {
-  //       console.error(error);
-  //     });
-  // }
-
-  // updatePassword(newPassword: string, oldPassword: string): Promise<any> {
-  //   const credential: firebase.auth.AuthCredential = firebase.auth.EmailAuthProvider.credential(
-  //     this.currentUser.email,
-  //     oldPassword
-  //   );
-  //   return this.currentUser
-  //     .reauthenticateWithCredential(credential)
-  //     .then(() => {
-  //       this.currentUser.updatePassword(newPassword).then(() => {
-  //         console.log('Password Changed');
-  //       });
-  //     })
-  //     .catch(error => {
-  //       console.error(error);
-  //     });
-  // }
-// }
+    getUserProfile(){
+      return this.userProfile;
+    }
+  }
 

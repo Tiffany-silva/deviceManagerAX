@@ -1,7 +1,7 @@
 import { EmailValidator } from '@angular/forms';
 
 export interface User {
-    userid:string,
+ 
     firstName: string,
     lastName: string,
     email: string,
