@@ -2,25 +2,23 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-
 import { IonicModule } from '@ionic/angular';
-
 import { DeviceDetailPage } from './device-detail.page';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: DeviceDetailPage
-  }
+	{
+		path: '',
+		component: DeviceDetailPage
+	}
 ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    RouterModule.forChild(routes)
-  ],
-  declarations: [DeviceDetailPage]
+	imports: [
+		CommonModule,
+		FormsModule,
+		IonicModule,
+		RouterModule.forChild(routes)
+	],
+	declarations: [DeviceDetailPage]
 })
-export class DeviceDetailPageModule {}
+export class DeviceDetailPageModule { }

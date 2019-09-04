@@ -46,10 +46,10 @@ export class ProfilePage implements OnInit {
 	}
 
 	ngOnInit() {
-		/**
-		 * calls the getBorrowings method from the borrowing service
-		 * 	to get all the borrowings of the currently logged in user
-		 */
+		
+		// calls the getBorrowings method from the borrowing service
+		 //	to get all the borrowings of the currently logged in user
+		 
 		this.borrowingService.getBorrowings(this.id).subscribe(myDeviceData => {
 			this.myBorrowedDevices = myDeviceData;
 		});
@@ -130,6 +130,7 @@ export class ProfilePage implements OnInit {
 		});
 		await alert.present();
 	}
+
 	//updates the email of the currently logged in user
 	async updateEmailAlert(): Promise<void> {
 		const alert = await this.alertCtrl.create({

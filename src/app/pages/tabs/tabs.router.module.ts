@@ -27,12 +27,9 @@ const routes: Routes = [
                 loadChildren: () =>
                     import('../user-list/user-list.module').then(m => m.UserListPageModule), canActivate: [AngularFireAuthGuard],
             }
-
         ]
     },
-
 ];
-
 @NgModule({
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]

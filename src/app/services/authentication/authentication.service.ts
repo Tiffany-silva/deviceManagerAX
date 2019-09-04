@@ -21,28 +21,26 @@ export class AuthenticationService {
 		private afu: AngularFireAuth,
 		private userService: UserService) { }
 
-		//signs up the user authenticating
+	//signs up the user authenticating
 	signup(email: string, password: string): Promise<any> {
 		return this.afu.auth.createUserWithEmailAndPassword(email, password);
 	}
-		//logs in the user
-	loginUser(
-		email: string,
-		password: string
+	//logs in the user
+	loginUser(email: string,password: string
 	): Promise<firebase.auth.UserCredential> {
 		return this.afu.auth.signInWithEmailAndPassword(email, password);
 	}
-		//logs out the user
+	//logs out the user
 	logoutUser(): Promise<void> {
 		return this.afu.auth.signOut();
 	}
 
-		//resets the password
+	//resets the password
 	resetPassword(email: string): Promise<void> {
 		return this.afu.auth.sendPasswordResetEmail(email);
 	}
 
-		//gets the current logged in user
+	//gets the current logged in user
 	getUserDetails() {
 		return this.afu.auth.currentUser.uid;
 	}

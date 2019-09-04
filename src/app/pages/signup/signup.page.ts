@@ -74,10 +74,10 @@ export class SignupPage implements OnInit {
 			const lastName: string = signupForm.value.lastName;
 			const password: string = signupForm.value.password;
 			let userid: string = '';
-			/**
-			 * calls the signup method from the authentication 
-			 * service to register a user
-			 */
+			
+			 //calls the signup method from the authentication 
+			 //service to register a user
+			
 			this.authService.signup(email, password).then(
 				async (data) => {
 					userid = data.user.uid;
@@ -89,10 +89,10 @@ export class SignupPage implements OnInit {
 						'role': 'borrower',
 						'status': 'disabled'
 					}
-					/**
-					 * calls the addUser method from the 
-					 * 	user service to register a user
-					 */
+					
+					 //calls the addUser method from the 
+					 	//user service to register a user
+					 
 					this.userService.addUser(user, userid).then(() => {
 						this.loading.dismiss().then(async () => {
 							const alert = await this.alertCtrl.create({
@@ -113,7 +113,6 @@ export class SignupPage implements OnInit {
 							});
 						}
 					);
-					
 				},
 				error => {
 					this.loading.dismiss().then(async () => {

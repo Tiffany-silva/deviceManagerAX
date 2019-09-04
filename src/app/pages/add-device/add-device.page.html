@@ -91,18 +91,6 @@
 				Field left blank
 			</div>
 			<ion-item>
-				<ion-label position="stacked">Device status<ion-text color="danger">*</ion-text>
-				</ion-label>
-				<ion-input formControlName="status" type="text" placeholder="device status" 
-					[class.invalid]="!addDeviceForm.controls['status'].valid &&
-            		addDeviceForm.controls['status'].touched" ngModel required>
-				</ion-input>
-			</ion-item>
-			<div class="validation-errors" *ngIf="!addDeviceForm.controls['status'].valid &&
-          		addDeviceForm.controls['status'].touched">
-				Field left blank
-			</div>
-			<ion-item>
 				<ion-label position="stacked">Insured<ion-text color="danger">*</ion-text>
 				</ion-label>
 				<ion-input formControlName="insured" type="text" placeholder="insured" 

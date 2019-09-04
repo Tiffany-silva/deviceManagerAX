@@ -30,12 +30,14 @@ export class UserListPage implements OnInit {
 		private alertCtrl: AlertController,
 		private loadingCtrl: LoadingController
 	) {
-		/**
-		 * calls the getUsers method from the user service
-		 *    to get all the registered users
-		 */
+		
+		 //calls the getUsers method from the user service
+		   // to get all the registered users
+		 
 		this.userService.getUsers().subscribe(userData => {
 			this.userList = userData;
+		}, error=>{
+			this.alert(error.message);
 		});
 	}
 

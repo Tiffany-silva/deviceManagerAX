@@ -103,13 +103,8 @@ export class UserService {
 		return this.currentUser
 			.reauthenticateWithCredential(credential)
 			.then(() => {
-				this.currentUser.updatePassword(newPassword).then(() => {
-					console.log('Password changed');
-				});
+				this.currentUser.updatePassword(newPassword);
 			})
-			.catch(error => {
-				console.error(error);
-			});
 	}
 
 	//gets the username 
@@ -132,6 +127,5 @@ export class UserService {
 		user = this.db.doc(`/Users/${userid}`);
 		return user.delete();
 	}
-
 }
 

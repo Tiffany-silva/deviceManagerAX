@@ -29,10 +29,16 @@ export class TabsPage {
 		private userService: UserService
 	) {
 		//calls the getUserP method from user service to get the current user profile
-		this.userService.getUserP(this.authService.getUserDetails())
+		 	this.userService.getUserP(this.authService.getUserDetails())
 			.subscribe((documentSnapshot: firebase.firestore.DocumentSnapshot) => {
 				this.subscriber = documentSnapshot.data();
 				this.currentUserRole = this.subscriber.role;
+			},async error=>{
+				const alert = await this.alertCtrl.create({
+					message:error.message,
+					buttons: [{ text: "OK", role: "cancel" }]
+				});
+				await alert.present();
 			}
 		);
 	}

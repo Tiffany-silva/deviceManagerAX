@@ -43,30 +43,28 @@ export class DeviceDetailPage implements OnInit {
 
 		//get the id of the selected device
 		this.id = this.route.snapshot.paramMap.get('id');
-
-		/**
-		 * calls the getUserP method from the user service 
-		 * 		to get the profile details
-		 */
+		 
+		//calls the getUserP method from the user service 
+		 	//	to get the profile details
 		this.userService.getUserP(this.authService.getUserDetails())
 			.subscribe((documentSnapshot: firebase.firestore.DocumentSnapshot) => {
 				this.subscriber = documentSnapshot.data();
 				this.currentUserRole = this.subscriber.role;
 				this.currentUsername = this.subscriber.firstName + " " + this.subscriber.lastName;
 
+			},
+			error=>{
+				this.alert(error.message);
 			});
 
-		/**calls the getDeviceDetail method from the device service
-		 * 		to get the device details from the device catalogue
-		 */
+		//calls the getDeviceDetail method from the device service
+		 	//to get the device details from the device catalogue
 		this.device = this.deviceService.getDeviceDetail(this.id).valueChanges().subscribe(data => {
 			this.device = data;
 		});
 
-		/**
-		 * calls the getBorrowingList method from the devices service to
-		 * 		get the past borrowings made on the device
-		 */
+		 //calls the getBorrowingList method from the devices service to
+		 //	get the past borrowings made on the device
 		this.deviceService.getBorrowingList(this.id).subscribe(myDeviceData => {
 			this.borrowings = myDeviceData;
 		});
@@ -78,6 +76,7 @@ export class DeviceDetailPage implements OnInit {
 	editbtn() {
 		this.isEditable = !this.isEditable;
 	}
+
 	//updates the primary user of the device
 	async updatePrimaryUser(): Promise<void> {
 		const alert = await this.alertCtrl.create({
@@ -177,6 +176,7 @@ export class DeviceDetailPage implements OnInit {
 		});
 		await alert.present();
 	}
+	
 	//deletes a device from the device catalogue
 	async deleteDevice() {
 		const alert = await this.alertCtrl.create({
@@ -241,10 +241,8 @@ export class DeviceDetailPage implements OnInit {
 		);
 		this.loading = await this.loadingCtrl.create();
 		await this.loading.present();
-
-
-
 	}
+
 	//returns a device that is borrowed
 	async returnDevice(borrowingid: string, deviceid: string, deviceStatus: string) {
 		const alert = await this.alertCtrl.create({
@@ -271,7 +269,6 @@ export class DeviceDetailPage implements OnInit {
 		})
 		await alert.present();
 	}
-
 }
 
 

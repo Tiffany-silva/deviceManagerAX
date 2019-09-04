@@ -74,10 +74,10 @@ export class LoginPage implements OnInit {
 			const email = loginForm.value.email;
 			const password = loginForm.value.password;
 
-			/**
-			 * calls the loginUser method from the authentication service
-			 * 		to log the user in.
-			 */
+			
+			 //calls the loginUser method from the authentication service
+			 	//	to log the user in.
+			 
 			this.authService.loginUser(email, password).then(
 				() => {
 					//gets the profile of the user

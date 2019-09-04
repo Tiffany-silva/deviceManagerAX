@@ -1,10 +1,16 @@
 <ion-header translucent>
 	<ion-toolbar>
 		<ion-searchbar></ion-searchbar>
+
 	</ion-toolbar>
 </ion-header>
 
 <ion-content fullscreen>
+	<ion-fab horizontal="end" vertical="bottom" slot="fixed" *ngIf="currentUserRole=='admin'">
+		<ion-fab-button color="primary" routerLink="/add-device">
+			<ion-icon name="add"></ion-icon>
+		</ion-fab-button>
+	</ion-fab>
 	<ion-list>
 		<ion-list-header>
 			<ion-label class=".ion-text-center">My Devices</ion-label>
@@ -59,13 +65,7 @@
 			</ion-item-sliding>
 		</div>
 	</ion-list>
-	<div *ngIf="currentUserRole=='admin'">
-		<ion-fab horizontal="end" vertical="bottom" slot="fixed">
-			<ion-fab-button color="primary" routerLink="/add-device">
-				<ion-icon name="add"></ion-icon>
-			</ion-fab-button>
-		</ion-fab>
-	</div>
+
 </ion-content>
 
 <script>

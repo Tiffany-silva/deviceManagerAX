@@ -1,8 +1,5 @@
-
 import { Component } from '@angular/core';
 import {Plugins} from '@capacitor/core';
-
-
 const {SplashScreen, StatusBar}=Plugins;
 
 @Component({
@@ -22,9 +19,5 @@ export class AppComponent {
       SplashScreen.hide().catch(error =>{
         console.error(error);
       });
-
-      // StatusBar.hide().catch(error=>{
-      //   console.error(error);
-      // });
   }
 }

@@ -66,12 +66,7 @@ export class DeviceService {
 			let device;
 			device = this.db.doc(`/Devices/${deviceID}`);
 			device.update({ deviceStatus: 'borrowed', borrower: user });
-			//TO-DO
-			// return firebase.firestore().runTransaction(transaction=>{
-			//   return transaction.get(this.deviceListRef.doc(deviceID)).then(devDoc=>{
-			//     transaction.update(this.deviceListRef.doc(deviceID),{deviceStatus: 'borrowed', borrower: user})
-			//   })
-			// })
+		
 		});
 	}
 	//gets the past borrowing list of the device
