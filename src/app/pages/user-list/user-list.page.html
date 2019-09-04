@@ -1,0 +1,50 @@
+<ion-header translucent>
+	<ion-toolbar>
+		<ion-searchbar></ion-searchbar>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+	<ion-list>
+		<ion-list-header>
+			<ion-label class=".ion-text-center">All Users</ion-label>
+		</ion-list-header>
+		<div tappable *ngFor="let user of userList">
+			<ion-item-sliding>
+				<ion-item routerLink="/profile/{{ user.id }}">
+					<ion-avatar slot="start">
+						<img src="../../../assets/thumbnail/thumbnail.png">
+					</ion-avatar>
+					<ion-label>
+						<h2>{{user?.firstName}} {{user?.lastName}}</h2>
+						<h3 *ngIf="user?.role=='admin'" class="admin">{{user?.role}}</h3>
+						<h3 *ngIf="user?.role=='borrower'" class="borrower">{{user?.role}}</h3>
+						<p *ngIf="user?.status=='enabled'" class="enabled"><strong>{{user?.status}}</strong></p>
+						<p *ngIf="user?.status=='disabled'" class="disabled"><strong>{{user?.status}}</strong></p>
+					</ion-label>
+				</ion-item>
+				<ion-item-options side="end">
+					<ion-item-option *ngIf="user?.status=='disabled'" (click)="updateUserStatus('enabled', user.id)"
+						class="enableSlide">
+						Enable
+					</ion-item-option>
+					<ion-item-option *ngIf="user?.status=='enabled'" (click)="updateUserStatus('disabled', user.id)"
+						class="disableSlide">
+						Disable
+					</ion-item-option>
+					<ion-item-option *ngIf="user?.role=='borrower'" (click)="updateUserRole('admin', user.id)"
+						class="makeAdminSlide">
+						Make Admin
+					</ion-item-option>
+					<ion-item-option *ngIf="user?.role=='admin'" (click)="updateUserRole('borrower', user.id)"
+						class="makeBorrower">
+						Make Borrower
+					</ion-item-option>
+					<ion-item-option (click)="deleteUser(user.id)" class="deleteSlide">
+						Delete
+					</ion-item-option>
+				</ion-item-options>
+			</ion-item-sliding>
+		</div>
+	</ion-list>
+</ion-content>

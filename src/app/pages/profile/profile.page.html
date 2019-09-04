@@ -1,0 +1,71 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button defaultHref="/tabs"></ion-back-button>
+		</ion-buttons>
+		<ion-title>Profile</ion-title>
+		<ion-buttons slot="end">
+			<ion-button (click)="logOut()">
+				<ion-icon slot="end" size="medium" name="log-out"></ion-icon>
+			</ion-button>
+		</ion-buttons>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+	<div style="text-align:center">
+		<img src="../../../assets/thumbnail/thumbnail.png" width="20%" />
+		<h4>{{ (user | async)?.firstName }} {{ (user | async)?.lastName }}</h4>
+		<p>{{ (user | async)?.email}} </p>
+		<div>
+			<ion-button *ngIf="id==currentUserID" slot="end" size="small" fill="clear" (click)="editbtn()">
+				<div [hidden]="isEditable">
+					Edit
+				</div>
+				<div [hidden]="!isEditable">
+					Done
+				</div>
+			</ion-button>
+		</div>
+	</div>
+
+	<ion-list padding [hidden]="!isEditable">
+		<ion-item (click)="updateNameAlert()" class="edit">
+			<ion-label>
+				{{ (user | async)?.firstName }} {{ (user | async)?.lastName }}
+			</ion-label>
+		</ion-item>
+		<ion-item (click)="updateEmailAlert()" class="edit">
+			<ion-label>{{ (user | async)?.email }}</ion-label>
+		</ion-item>
+		<ion-item (click)="updatePasswordAlert()" class="edit">
+			<ion-label>Password</ion-label>
+		</ion-item>
+		<ion-item lines="none" class="tap">
+			<ion-label>Tap fields to edit</ion-label>
+		</ion-item>
+	</ion-list>
+
+	<ion-list padding>
+		<ion-list-header>
+			<ion-label class=".ion-text-center">Past Borrowings</ion-label>
+		</ion-list-header>
+		<div *ngFor="let myDevice of myBorrowedDevices">
+			<ion-item>
+				<ion-avatar slot="start">
+					<img src="../../../assets/thumbnail/deviceThumbnail.png">
+				</ion-avatar>
+				<ion-label>
+					<h2>{{myDevice?.deviceName}}</h2>
+					<p><strong>{{myDevice?.serialNumber}}</strong></p>
+					<p>{{myDevice?.specification}}</p>
+					<p>{{myDevice?.borrowedDate}}</p>
+					<p *ngIf="!myDevice?.returnedDate">
+						{{myDevice?.returnedDate}}
+					</p>
+					<p>{{myDevice?.deviceStatus}}</p>
+				</ion-label>
+			</ion-item>
+		</div>
+	</ion-list>
+</ion-content>

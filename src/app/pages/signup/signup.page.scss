@@ -1,0 +1,74 @@
+ion-content.signupbg {
+  --background: url(../../../assets/backgroundMedia/signupb.jpg) 0 0/100% 100%
+    no-repeat;
+}
+
+ion-grid {
+  height: 100%;
+  justify-content: center;
+}
+#round {
+  border: 1px solid rgb(241, 236, 236);
+  border-radius: 30px;
+  margin: 5px;
+}
+
+ion-input {
+  font-size: 15px;
+  font-family: "Archivo Narrow", sans-serif;
+}
+
+.formbg {
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 25px;
+  padding: 20px 10px;
+  margin: 15px;
+}
+
+h5 {
+  font-family: "Roboto", sans-serif;
+  color: white;
+}
+.validation-errors,
+.error-message {
+  color: red;
+  font-size: 80%;
+  text-align: center;
+}
+.login {
+  font-size: 85%;
+  color: rgba(56, 2, 248, 0.9);
+  text-decoration: underline;
+  font-family: "Roboto", sans-serif;
+  padding: 70px 0px 10px 10px;
+  text-align: center;
+  font-weight: bold;
+  margin: 0px 50px;
+}
+ion-item{
+  height: 35px;
+}
+ion-button {
+  padding: 10px;
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+}
+
+.page-centered-element {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  text-align: center;
+
+  .buttons-container {
+    margin-top: 30px;
+  }
+}

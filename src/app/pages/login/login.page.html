@@ -1,40 +1,49 @@
-<ion-content>
-  <ion-grid>
-    <ion-row class="ion-justify-content-center ion-align-items-center" style="height: 100%;flex-direction: column">
-      <h3 class="align-content-center" style="padding-bottom:40px;"> LOGIN </h3>
-      <form class="form" [formGroup]="loginForm">
-      <ion-item>
-          <ion-input formControlName="email" type="email" placeholder="Enter your Email" ngModel required></ion-input>
-        </ion-item>
-        <div class="validation-errors">
-          <ng-container *ngFor="let validation of validation_messages.email">
-            <div class="error-message" *ngIf="loginForm.get('email').hasError(validation.type) 
-                && (loginForm.get('email').dirty || loginForm.get('email').touched)">
-              {{validation.message}}
-            </div>
-          </ng-container>
-        </div>
-        <ion-item>
-          <ion-input formControlName="password" type="password" class="form-control" placeholder="Enter your Password"
-            ngModel required></ion-input>
-        </ion-item>
-        <div class="validation-errors">
-          <ng-container *ngFor="let validation of validation_messages.password">
-            <div class="error-message" *ngIf="loginForm.get('password').hasError(validation.type)
-                    && (loginForm.get('password').dirty || loginForm.get('password').touched)">
-              {{validation.message}}
-            </div>
-          </ng-container>
-        </div>
-        <ion-button (click)="loginUser(loginForm)"expand="block" [disabled]="!loginForm.valid">LOGIN</ion-button>
-      </form>
-        <label class="error-message"> {{errorMessage}} </label>
-        <ion-label routerLink="/reset-password" class="forgotpw">Forgot password?</ion-label>
-        <div style="padding:10px;">
-          <ion-label routerLink="/signup" class="noaccount">No account? Sign Up instead</ion-label>
-        </div>
-      
-    </ion-row>
-  </ion-grid>
-
+<ion-content force-overscroll="false">
+	<gl-background-video src="assets/backgroundMedia/backgroundLogin.mp4"
+		poster="assets/backgroundMedia/backgroundLogin.png"></gl-background-video>
+	<div class="page-centered-element">
+		<div class="content">
+			<ion-grid>
+				<ion-row class="ion-justify-content-center ion-align-items-center"
+					style="height: 100%;flex-direction: column">
+					<h3 class="align-content-center"> L O G I N </h3>
+					<form class="formbg" [formGroup]="loginForm">
+						<ion-item id="round" lines="none">
+							<ion-input formControlName="email" type="email" placeholder="Email" ngModel required>
+							</ion-input>
+						</ion-item>
+						<div class="validation-errors">
+							<ng-container *ngFor="let validation of validation_messages.email">
+								<div class="error-message" *ngIf="loginForm.get('email').hasError(validation.type) 
+                          			&& (loginForm.get('email').dirty || loginForm.get('email').touched)">
+									{{validation.message}}
+								</div>
+							</ng-container>
+						</div>
+						<ion-item lines="none" id="round">
+							<ion-input formControlName="password" type="password" class="form-control"
+								placeholder="Password" ngModel required></ion-input>
+						</ion-item>
+						<div class="validation-errors">
+							<ng-container *ngFor="let validation of validation_messages.password">
+								<div class="error-message" *ngIf="loginForm.get('password').hasError(validation.type)
+                             		 && (loginForm.get('password').dirty || loginForm.get('password').touched)">
+									{{validation.message}}
+								</div>
+							</ng-container>
+						</div>
+						<ion-button (click)="loginUser(loginForm)" expand="block" [disabled]="!loginForm.valid">login
+						</ion-button>
+						<div>
+							<ion-label routerLink="/reset-password" class="forgotpw">Forgot password ?</ion-label>
+						</div>
+						<div>
+							<ion-label routerLink="/signup" class="noaccount">No account? Sign Up instead</ion-label>
+						</div>
+					</form>
+					<label class="error-message"> {{errorMessage}} </label>
+				</ion-row>
+			</ion-grid>
+		</div>
+	</div>
 </ion-content>

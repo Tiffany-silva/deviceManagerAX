@@ -1,0 +1,25 @@
+<ion-tabs>
+	<ion-tab-bar slot="bottom">
+		<ion-tab-button tab="device-list">
+			<ion-icon name="phone-portrait"></ion-icon>
+			<ion-label>Devices</ion-label>
+		</ion-tab-button>
+
+		<div *ngIf="currentUserRole=='admin'">
+			<ion-tab-button tab="userList">
+				<ion-icon name="people"></ion-icon>
+				<ion-label>User List</ion-label>
+			</ion-tab-button>
+		</div>
+		
+		<ion-tab-button (click)="scanNnavigate()">
+			<ion-icon name="qr-scanner"></ion-icon>
+			<ion-label>QR Scanner</ion-label>
+		</ion-tab-button>
+
+		<ion-tab-button (click)="navProfile()">
+			<ion-icon name="person"></ion-icon>
+			<ion-label>Profile</ion-label>
+		</ion-tab-button>
+	</ion-tab-bar>
+</ion-tabs>

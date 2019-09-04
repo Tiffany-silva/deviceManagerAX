@@ -1,0 +1,32 @@
+.borrower{
+    color: blue;
+}
+.admin{
+    color:rgb(162, 0, 255);
+}
+.enabled{
+    color:green;
+}
+.disabled{
+    color:red;
+}
+
+.disableSlide, .deleteSlide{
+    background-color: red;
+    color:white;
+}
+
+.enableSlide{
+    background-color: green;
+    color:white;
+}
+
+.makeAdminSlide{
+    background-color:rgb(162, 0, 255);
+    color:white;
+}
+
+.makeBorrower{
+    background-color:blue;
+    color:white;
+}

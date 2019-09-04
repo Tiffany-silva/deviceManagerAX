@@ -1,0 +1,121 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons>
+			<ion-back-button slot="start" defaultHref="/tabs"></ion-back-button>
+		</ion-buttons>
+		<ion-title>{{ device?.deviceName }}</ion-title>
+		<div *ngIf="currentUserRole=='admin'" slot="end">
+			<ion-button slot="end" size="medium" fill="clear" (click)="editbtn()">
+				<div [hidden]="isEditable">
+					Edit
+				</div>
+				<div [hidden]="!isEditable">
+					Done
+				</div>
+			</ion-button>
+		</div>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+	<ion-list *ngIf="!isEditable">
+		<ion-item lines="none">
+			<div style="text-align:center">
+				<img src="../../../assets/thumbnail/deviceThumbnail.png" width="30%" />
+			</div>
+		</ion-item>
+		<ion-item>
+			<ion-label> Device Name </ion-label>
+			<p>{{ device?.deviceName }}</p>
+		</ion-item>
+		<ion-item>
+			<ion-label>Serial Number</ion-label>
+			<p><strong>{{ device ?.serialNumber }}</strong></p>
+		</ion-item>
+		<ion-item>
+			<ion-label>Purchased Date</ion-label>
+			<p>{{ device?.purchasedDate }}</p>
+		</ion-item>
+		<ion-item>
+			<ion-label>Insured</ion-label>
+			<p>{{ device?.insured }}</p>
+		</ion-item>
+		<ion-item>
+			<ion-label>Primary User</ion-label>
+			<p>{{ device?.primaryUser }}</p>
+		</ion-item>
+		<ion-item>
+			<ion-label>Purchased From</ion-label>
+			<p>{{ device?.purchasedFrom }}</p>
+		</ion-item>
+		<ion-item>
+			<ion-label>Recieved Date</ion-label>
+			<p>{{ device?.recievedDate }}</p>
+		</ion-item>
+		<ion-item>
+			<ion-label>Expense By</ion-label>
+			<p>{{ device?.expenseBy }}</p>
+		</ion-item>
+		<ion-item>
+			<ion-label>Added By</ion-label>
+			<p>{{ device?.addedBy }}</p>
+		</ion-item>
+		<ion-item>
+			<ion-label>Specification</ion-label>
+			<p>{{ device?.specification }}</p>
+		</ion-item>
+		<ion-item>
+			<ion-label>Device Status</ion-label>
+			<p>{{ device?.deviceStatus }}</p>
+		</ion-item>
+		<ion-item *ngIf="device?.borrower != ''">
+			<ion-label>Borrower</ion-label>
+			<p>{{ device?.borrower }}</p>
+		</ion-item>
+		<div>
+			<ion-button expand="block" *ngIf="device?.deviceStatus == 'Available'" (click)="borrowDevice('borrowed')">
+				Borrow
+			</ion-button>
+		</div>
+		<div *ngIf="currentUserRole=='admin'">
+			<ion-button expand="block" (click)="deleteDevice()">
+				Delete
+			</ion-button>
+		</div>
+	</ion-list>
+
+	<ion-list *ngIf="isEditable">
+		<ion-item (click)="updateInsured()">
+			<ion-label>Insured</ion-label>
+			<p>{{ device?.insured }}</p>
+		</ion-item>
+		<ion-item (click)="updatePrimaryUser()">
+			<ion-label>Primary User</ion-label>
+			<p>{{ device?.primaryUser }}</p>
+		</ion-item>
+		<ion-item (click)="updateSpecification()">
+			<ion-label>Specification</ion-label>
+			<p>{{ device?.specification }}</p>
+		</ion-item>
+	</ion-list>
+
+	<ion-list>
+		<ion-list-header>
+			<ion-label class=".ion-text-center">Past Borrowings</ion-label>
+		</ion-list-header>
+		<div *ngFor="let borrowing of borrowings">
+			<ion-item>
+				<ion-avatar slot="start">
+					<img src="../../../assets/thumbnail/deviceThumbnail.png" />
+				</ion-avatar>
+				<ion-label>
+					<h2>{{ borrowing?.user }}</h2>
+					<p>
+						<strong>{{ borrowing?.borrowedDate }}</strong>
+					</p>
+					<p>{{ borrowing?.status }}</p>
+				</ion-label>
+			</ion-item>
+		</div>
+	</ion-list>
+</ion-content>
