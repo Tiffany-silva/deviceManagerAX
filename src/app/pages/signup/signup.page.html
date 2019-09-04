@@ -1,58 +1,63 @@
-<ion-content class="signupbg">
-  <ion-grid style="height: 100%">
-    <ion-row class="ion-justify-content-center ion-align-items-center" style="height: 100%;flex-direction: column">
-      <h3 class="align-content-center"> R E G I S T E R </h3>
-      <form [formGroup]="signupForm" class="formbg">
-        <ion-item id="round" lines="none">
-          <ion-input formControlName="firstName" type="text" placeholder="First Name"
-            [class.invalid]="!signupForm.controls['firstName'].valid && signupForm.controls['firstName'].touched"
-            ngModel required>
-          </ion-input>
-        </ion-item>
-        <div class="validation-errors" *ngIf="!signupForm.controls['firstName'].valid
-          && signupForm.controls['firstName'].touched">
-          Please enter a valid name
-        </div>
-        <ion-item id="round" lines="none">
-          <ion-input formControlName="lastName" type="text" placeholder="Last Name" [class.invalid]="!signupForm.controls['lastName'].valid && 
-            signupForm.controls['lastName'].touched" ngModel required>
-          </ion-input>
-        </ion-item>
-        <div class="validation-errors" *ngIf="!signupForm.controls['lastName'].valid
-        && signupForm.controls['lastName'].touched">
-          Please enter a valid name
-        </div>
-        <ion-item id="round" lines="none">
-          <ion-input formControlName="email" type="email" placeholder="Email" [class.invalid]="!signupForm.controls['email'].valid && 
-            signupForm.controls['email'].touched" ngModel required>
-          </ion-input>
-        </ion-item>
-        <div class="validation-errors" *ngIf="!signupForm.controls['email'].valid
-      && signupForm.controls['email'].touched">
-          Please enter a valid email address
-        </div>
-        <ion-item id="round" lines="none">
-          <ion-input formControlName="password" type="password" placeholder="Password" [class.invalid]="!signupForm.controls['password'].valid && 
-            signupForm.controls['password'].touched" ngModel required>
-          </ion-input>
-        </ion-item>
-        <div class="validation-errors" *ngIf="!signupForm.controls['password'].valid  &&
-      signupForm.controls['password'].touched">
-          Required atleast 6 characters
-        </div>
-        <ion-item id="round" lines="none">
-          <ion-input formControlName="confirmPassword" type="Password" placeholder="Confirm password" ngModel required>
-          </ion-input>
-        </ion-item>
-        <div class="validation-errors" *ngIf="signupForm.hasError('passwordsNotEqual')">
-          passwords dont match
-        </div>
-        <ion-button expand="block" (click)="registerUser(signupForm)">Register</ion-button>
-
-        <div class="padding">
-          <ion-label class="login" routerLink="/login">Have an account? Login instead</ion-label>
-        </div>
-      </form>
-    </ion-row>
-  </ion-grid>
+<ion-content force-overscroll="false" class="signupbg">
+	<ion-grid style="height: 100%">
+		<ion-row class="ion-justify-content-center ion-align-items-center" style="height: 100%;flex-direction: column">
+			<h3 class="align-content-center"> R E G I S T E R </h3>
+			<form [formGroup]="signupForm" class="formbg">
+				<ion-item id="round" lines="none">
+					<ion-input formControlName="firstName" type="text" placeholder="First Name"
+						[class.invalid]="!signupForm.controls['firstName'].valid && 
+						signupForm.controls['firstName'].touched" ngModel required>
+					</ion-input>
+				</ion-item>
+				<div class="validation-errors" *ngIf="!signupForm.controls['firstName'].valid
+          				&& signupForm.controls['firstName'].touched">
+					Please enter a valid name
+				</div>
+				<ion-item id="round" lines="none">
+					<ion-input formControlName="lastName" type="text" placeholder="Last Name" 
+						[class.invalid]="!signupForm.controls['lastName'].valid && 
+        					signupForm.controls['lastName'].touched" ngModel required>
+					</ion-input>
+				</ion-item>
+				<div class="validation-errors" *ngIf="!signupForm.controls['lastName'].valid
+        				&& signupForm.controls['lastName'].touched">
+					Please enter a valid name
+				</div>
+				<ion-item id="round" lines="none">
+					<ion-input formControlName="email" type="email" placeholder="Email" 
+						[class.invalid]="!signupForm.controls['email'].valid && 
+            			signupForm.controls['email'].touched" ngModel required>
+					</ion-input>
+				</ion-item>
+				<div class="validation-errors" *ngIf="!signupForm.controls['email'].valid
+      					&& signupForm.controls['email'].touched">
+					Please enter a valid email address
+				</div>
+				<ion-item id="round" lines="none">
+					<ion-input formControlName="password" type="password" placeholder="Password" 
+						[class.invalid]="!signupForm.controls['password'].valid && 
+            			signupForm.controls['password'].touched" ngModel required>
+					</ion-input>
+				</ion-item>
+				<div class="validation-errors" *ngIf="!signupForm.controls['password'].valid  &&
+      				signupForm.controls['password'].touched">
+					Required atleast 6 characters
+				</div>
+				<ion-item id="round" lines="none">
+					<ion-input formControlName="confirmPassword" type="Password" placeholder="Confirm password" 
+					ngModel required>
+					</ion-input>
+				</ion-item>
+				<div class="validation-errors" *ngIf="signupForm.hasError('passwordsNotEqual')">
+					passwords dont match
+				</div>
+				<ion-button expand="block" (click)="registerUser(signupForm)" [disabled]="!signupForm.valid">
+					Register
+				</ion-button>
+			</form>
+			<div class="padding">
+					<ion-label class="login" routerLink="/login">Have an account? Login instead</ion-label>
+				</div>
+		</ion-row>
+	</ion-grid>
 </ion-content>

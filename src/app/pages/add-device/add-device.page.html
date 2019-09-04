@@ -1,135 +1,134 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/tabs"></ion-back-button>
-    </ion-buttons>
-    <ion-title>Add New Device </ion-title>
-  </ion-toolbar>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button defaultHref="/tabs"></ion-back-button>
+		</ion-buttons>
+		<ion-title>Add New Device </ion-title>
+	</ion-toolbar>
 </ion-header>
 <ion-content fullscreen force-overscroll="false">
-        <form [formGroup]="addDeviceForm">
-
-          <ion-list lines="full" class="ion-no-margin ion-no-padding">
-      
-            <ion-item>
-              <ion-label position="stacked">Device Name <ion-text color="danger">*</ion-text>
-              </ion-label>
-              <ion-input formControlName="deviceName" type="text" placeholder="Device Name" [class.invalid]="!addDeviceForm.controls['deviceName'].valid && 
-                              addDeviceForm.controls['deviceName'].touched" ngModel required></ion-input>
-            </ion-item>
-            <div class="validation-errors" *ngIf="!addDeviceForm.controls['deviceName'].valid
-                            && addDeviceForm.controls['deviceName'].touched">
-              Field left blank
-            </div>
-            <ion-item>
-              <ion-label position="stacked">Serial Number<ion-text color="danger">*</ion-text>
-              </ion-label>
-              <ion-input formControlName="serialNumber" type="text" placeholder="serial Number" [class.invalid]="!addDeviceForm.controls['serialNumber'].valid && 
-                                  addDeviceForm.controls['serialNumber'].touched" ngModel required>
-              </ion-input>
-            </ion-item>
-            <div class="validation-errors" *ngIf="!addDeviceForm.controls['serialNumber'].valid
-                                && addDeviceForm.controls['serialNumber'].touched">
-              Field left blank
-            </div>
-
-            <ion-item>
-              <ion-label position="stacked">Specification</ion-label>
-              <ion-textarea formControlName="specification" type="text" placeholder="Model, OS version" [class.invalid]="!addDeviceForm.controls['specification'].valid && 
-                              addDeviceForm.controls['specification'].touched" ngModel required></ion-textarea>
-            </ion-item>
-            <div class="validation-errors" *ngIf="!addDeviceForm.controls['specification'].valid
-                        && addDeviceForm.controls['specification'].touched">
-              Field left blank
-            </div>
-
-            <ion-item>
-              <ion-label position="stacked">Purchased Date<ion-text color="danger">*</ion-text>
-              </ion-label>
-              <ion-input formControlName="purchasedDate" type="date" placeholder="Purchased Date" [class.invalid]="!addDeviceForm.controls['purchasedDate'].valid && 
-                              addDeviceForm.controls['purchasedDate'].touched" ngModel required>
-              </ion-input>
-            </ion-item>
-            <div class="validation-errors" *ngIf="!addDeviceForm.controls['purchasedDate'].valid
-                            && addDeviceForm.controls['purchasedDate'].touched">
-              Field left blank
-            </div>
-
-            <ion-item>
-              <ion-label position="stacked">Purchased From<ion-text color="danger">*</ion-text>
-              </ion-label>
-              <ion-input formControlName="purchasedFrom" type="text" placeholder="Purchased From, ex: SL/NY"
-                [class.invalid]="!addDeviceForm.controls['purchasedFrom'].valid && 
-                                  addDeviceForm.controls['purchasedFrom'].touched" ngModel required>
-              </ion-input>
-            </ion-item>
-            <div class="validation-errors" *ngIf="!addDeviceForm.controls['purchasedFrom'].valid
-                                && addDeviceForm.controls['purchasedFrom'].touched">
-              Field left blank
-            </div>
-
-            <ion-item>
-              <ion-label position="stacked">Received Date<ion-text color="danger">*</ion-text>
-              </ion-label>
-              <ion-input formControlName="receivedDate" type="date" placeholder="Received Date" [class.invalid]="!addDeviceForm.controls['receivedDate'].valid && 
-                                      addDeviceForm.controls['receivedDate'].touched" ngModel required>
-              </ion-input>
-            </ion-item>
-            <div class="validation-errors" *ngIf="!addDeviceForm.controls['receivedDate'].valid
-                                    && addDeviceForm.controls['receivedDate'].touched">
-              Field left blank
-            </div>
-
-            <ion-item>
-              <ion-label position="stacked">Expense By<ion-text color="danger">*</ion-text>
-              </ion-label>
-              <ion-input formControlName="expenseBy" type="text" placeholder="Expense by" [class.invalid]="!addDeviceForm.controls['expenseBy'].valid && 
-                                          addDeviceForm.controls['expenseBy'].touched" ngModel required>
-              </ion-input>
-            </ion-item>
-            <div class="validation-errors" *ngIf="!addDeviceForm.controls['expenseBy'].valid
-                                        && addDeviceForm.controls['expenseBy'].touched">
-              Field left blank
-            </div>
-
-              <ion-item>
-                  <ion-label position="stacked">Device status<ion-text color="danger">*</ion-text>
-                  </ion-label>
-                  <ion-input formControlName="status" type="text" placeholder="device status" [class.invalid]="!addDeviceForm.controls['status'].valid && 
-                                              addDeviceForm.controls['status'].touched" ngModel required>
-                  </ion-input>
-                </ion-item>
-                <div class="validation-errors" *ngIf="!addDeviceForm.controls['status'].valid
-                                            && addDeviceForm.controls['status'].touched">
-                  Field left blank
-                </div>
-  
-                <ion-item>
-                    <ion-label position="stacked">Insured<ion-text color="danger">*</ion-text>
-                    </ion-label>
-                    <ion-input formControlName="insured" type="text" placeholder="insured" [class.invalid]="!addDeviceForm.controls['insured'].valid && 
-                                                addDeviceForm.controls['insured'].touched" ngModel required>
-                    </ion-input>
-                  </ion-item>
-                  <div class="validation-errors" *ngIf="!addDeviceForm.controls['insured'].valid
-                                              && addDeviceForm.controls['insured'].touched">
-                    Field left blank
-                  </div>
-
-                  <ion-item>
-                      <ion-label position="stacked">Primary User<ion-text color="danger">*</ion-text>
-                      </ion-label>
-                      <ion-input formControlName="primaryUser" type="text" placeholder="Primary User" [class.invalid]="!addDeviceForm.controls['primaryUser'].valid && 
-                                                  addDeviceForm.controls['primaryUser'].touched" ngModel required>
-                      </ion-input>
-                    </ion-item>
-                    <div class="validation-errors" *ngIf="!addDeviceForm.controls['primaryUser'].valid
-                                                && addDeviceForm.controls['primaryUser'].touched">
-                      Field left blank
-                    </div>
-  
-          </ion-list>
-          <ion-button (click)="addDevice(addDeviceForm)" expand="block" [disabled]="!addDeviceForm.valid">add
-          </ion-button>
-     </form>
+	<form [formGroup]="addDeviceForm">
+		<ion-list lines="full" class="ion-no-margin ion-no-padding">
+			<ion-item>
+				<ion-label position="stacked">Device Name <ion-text color="danger">*</ion-text>
+				</ion-label>
+				<ion-input formControlName="deviceName" type="text" placeholder="Device Name" 
+					[class.invalid]="!addDeviceForm.controls['deviceName'].valid &&
+            		addDeviceForm.controls['deviceName'].touched" ngModel required></ion-input>
+			</ion-item>
+			<div class="validation-errors" *ngIf="!addDeviceForm.controls['deviceName'].valid &&
+          		addDeviceForm.controls['deviceName'].touched">
+				Field left blank
+			</div>
+			<ion-item>
+				<ion-label position="stacked">Serial Number<ion-text color="danger">*</ion-text>
+				</ion-label>
+				<ion-input formControlName="serialNumber" type="text" placeholder="serial Number" [class.invalid]="
+            		!addDeviceForm.controls['serialNumber'].valid &&
+            		addDeviceForm.controls['serialNumber'].touched" ngModel required>
+				</ion-input>
+			</ion-item>
+			<div class="validation-errors" *ngIf="!addDeviceForm.controls['serialNumber'].valid &&
+          		addDeviceForm.controls['serialNumber'].touched">
+				Field left blank
+			</div>
+			<ion-item>
+				<ion-label position="stacked">Specification</ion-label>
+				<ion-textarea formControlName="specification" type="text" placeholder="Model, OS version"
+					[class.invalid]="!addDeviceForm.controls['specification'].valid &&
+            		addDeviceForm.controls['specification'].touched" ngModel required></ion-textarea>
+			</ion-item>
+			<div class="validation-errors" *ngIf="!addDeviceForm.controls['specification'].valid &&
+          		addDeviceForm.controls['specification'].touched">
+				Field left blank
+			</div>
+			<ion-item>
+				<ion-label position="stacked">Purchased Date<ion-text color="danger">*</ion-text>
+				</ion-label>
+				<ion-input formControlName="purchasedDate" type="date" placeholder="Purchased Date" 
+				[class.invalid]="!addDeviceForm.controls['purchasedDate'].valid &&
+            		addDeviceForm.controls['purchasedDate'].touched" ngModel required>
+				</ion-input>
+			</ion-item>
+			<div class="validation-errors" *ngIf="!addDeviceForm.controls['purchasedDate'].valid &&
+          		addDeviceForm.controls['purchasedDate'].touched">
+				Field left blank
+			</div>
+			<ion-item>
+				<ion-label position="stacked">Purchased From<ion-text color="danger">*</ion-text>
+				</ion-label>
+				<ion-input formControlName="purchasedFrom" type="text" placeholder="Purchased From, ex: SL/NY"
+					[class.invalid]="!addDeviceForm.controls['purchasedFrom'].valid &&
+            		addDeviceForm.controls['purchasedFrom'].touched" ngModel required>
+				</ion-input>
+			</ion-item>
+			<div class="validation-errors" *ngIf="!addDeviceForm.controls['purchasedFrom'].valid &&
+          		addDeviceForm.controls['purchasedFrom'].touched">
+				Field left blank
+			</div>
+			<ion-item>
+				<ion-label position="stacked">Received Date<ion-text color="danger">*</ion-text>
+				</ion-label>
+				<ion-input formControlName="receivedDate" type="date" placeholder="Received Date" 
+					[class.invalid]="!addDeviceForm.controls['receivedDate'].valid &&
+            		addDeviceForm.controls['receivedDate'].touched" ngModel required>
+				</ion-input>
+			</ion-item>
+			<div class="validation-errors" *ngIf="!addDeviceForm.controls['receivedDate'].valid &&
+          		addDeviceForm.controls['receivedDate'].touched">
+				Field left blank
+			</div>
+			<ion-item>
+				<ion-label position="stacked">Expense By<ion-text color="danger">*</ion-text>
+				</ion-label>
+				<ion-input formControlName="expenseBy" type="text" placeholder="Expense by" 
+					[class.invalid]="!addDeviceForm.controls['expenseBy'].valid &&
+            		addDeviceForm.controls['expenseBy'].touched" ngModel required>
+				</ion-input>
+			</ion-item>
+			<div class="validation-errors" *ngIf="!addDeviceForm.controls['expenseBy'].valid &&
+          		addDeviceForm.controls['expenseBy'].touched">
+				Field left blank
+			</div>
+			<ion-item>
+				<ion-label position="stacked">Device status<ion-text color="danger">*</ion-text>
+				</ion-label>
+				<ion-input formControlName="status" type="text" placeholder="device status" 
+					[class.invalid]="!addDeviceForm.controls['status'].valid &&
+            		addDeviceForm.controls['status'].touched" ngModel required>
+				</ion-input>
+			</ion-item>
+			<div class="validation-errors" *ngIf="!addDeviceForm.controls['status'].valid &&
+          		addDeviceForm.controls['status'].touched">
+				Field left blank
+			</div>
+			<ion-item>
+				<ion-label position="stacked">Insured<ion-text color="danger">*</ion-text>
+				</ion-label>
+				<ion-input formControlName="insured" type="text" placeholder="insured" 
+					[class.invalid]="!addDeviceForm.controls['insured'].valid &&
+            		addDeviceForm.controls['insured'].touched" ngModel required>
+				</ion-input>
+			</ion-item>
+			<div class="validation-errors" *ngIf="!addDeviceForm.controls['insured'].valid &&
+          		addDeviceForm.controls['insured'].touched">
+				Field left blank
+			</div>
+			<ion-item>
+				<ion-label position="stacked">Primary User<ion-text color="danger">*</ion-text>
+				</ion-label>
+				<ion-input formControlName="primaryUser" type="text" placeholder="Primary User" 
+					[class.invalid]="!addDeviceForm.controls['primaryUser'].valid &&
+            		addDeviceForm.controls['primaryUser'].touched" ngModel required>
+				</ion-input>
+			</ion-item>
+			<div class="validation-errors" *ngIf="!addDeviceForm.controls['primaryUser'].valid &&
+          		addDeviceForm.controls['primaryUser'].touched">
+				Field left blank
+			</div>
+		</ion-list>
+		<ion-button (click)="addDevice(addDeviceForm)" expand="block" [disabled]="!addDeviceForm.valid">
+			add
+		</ion-button>
+	</form>
 </ion-content>

@@ -1,5 +1,5 @@
 ion-content.signupbg {
-  --background: url(../../../assets/backgroundVid/signupbg.jpg) 0 0/100% 100%
+  --background: url(../../../assets/backgroundMedia/signupb.jpg) 0 0/100% 100%
     no-repeat;
 }
 
@@ -33,11 +33,11 @@ h3 {
 .validation-errors,
 .error-message {
   color: red;
-  font-size: 70%;
+  font-size: 85%;
   text-align: center;
 }
 .login {
-  font-size: 70%;
+  font-size: 85%;
   color: rgba(56, 2, 248, 0.9);
   text-decoration: underline;
   font-family: "Roboto", sans-serif;

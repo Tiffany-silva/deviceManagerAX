@@ -1,7 +1,7 @@
 import { EmailValidator } from '@angular/forms';
 
 export interface User {
- 
+    id?:string,
     firstName: string,
     lastName: string,
     email: string,
@@ -9,5 +9,5 @@ export interface User {
     role:string,
     status: string,
     modifiedDate?: Date,
-    createdDate: Date;
+    createdDate: Date
 }
